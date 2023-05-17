@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Text, TextInput } from "react-native-paper";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../config/firebase";
+import { FlatList } from "react-native-web";
 
 export default function HomeScreen( ) {
     const [busca, setBusca] = useState('');
@@ -32,6 +33,12 @@ export default function HomeScreen( ) {
         value={busca}
         onChangeText={setBusca}
          />
+
+           <FlatList
+                data={resultado}
+                renderItem={({ item }) => <Text key={item.id}>{item.NomeDoProduto}</Text>}
+            />
+
         </View>
     )
 
